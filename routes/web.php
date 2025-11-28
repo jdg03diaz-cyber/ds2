@@ -1,24 +1,38 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\Auth\ChangePasswordController;
-use App\Http\Controllers\HomeController; // dashboard
 
-// Página de inicio
+use App\Http\Controllers\Auth\CustomLogoutController;
+
+Route::post('/logout', [CustomLogoutController::class, 'destroy'])
+    ->name('logout');
+
+// Ruta pública (página principal)
 Route::get('/', function () {
     return view('welcome');
-})->name('home');
+});
 
-// Rutas protegidas
-Route::middleware(['auth'])->group(function() {
+// Rutas que requieren autenticación (solo usuarios logueados)
+Route::middleware([
+    'auth:sanctum',
+    config('jetstream.auth_session'),
+    'verified',
+])->group(function () {
+
     // Dashboard
-    Route::get('/dashboard', [HomeController::class, 'index'])->name('dashboard');
+    Route::get('/dashboard', function () {
+        return view('dashboard');
+    })->name('dashboard');
 
-    // Formulario cambio de contraseña
-    Route::get('/change', [ChangePasswordController::class, 'showChangeForm'])
-        ->name('change.password.form');
+    // Nueva ruta: Motos
+    Route::get('/motos', function () {
+        return view('motos');
+    })->name('motos');
 
-    // Procesar cambio de contraseña
-    Route::post('/change', [ChangePasswordController::class, 'update'])
-        ->name('change.password');
+    // Nueva ruta: Carros
+    Route::get('/carros', function () {
+        return view('carros');
+    })->name('carros');
+
+    
 });
