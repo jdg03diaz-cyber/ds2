@@ -140,12 +140,12 @@
   // ======= DATOS DE LOS BLOQUES =======
 const bloques = [
   { nombre: "Universidad de Córdoba", lat: 8.791676, lng: -75.862504, descripcion: "Campus principal en Montería, Colombia.", imagen: "img/ico.png" },
-  { nombre: "Bloque A - Rectoría", lat: 8.79185, lng: -75.86280, descripcion: "Oficinas administrativas y rectoría.", imagen: "img/rectoria.jpg" },
-  { nombre: "Biblioteca Central", lat: 8.79150, lng: -75.86220, descripcion: "Centro de recursos académicos y salas de estudio.", imagen: "img/biblioteca.jpg" },
-  { nombre: "Cafetería Auditorio", lat: 8.79130, lng: -75.86190, descripcion: "Zona de alimentación y descanso para estudiantes.", imagen: "img/cafeteria Auditorio.jpg" },
+  { nombre: "Bloque A - Rectoría", lat: 8.79185, lng: -75.86280, descripcion: "Oficinas administrativas y rectoría.", imagen: "img/Rectoria.jpg" },
+  { nombre: "Biblioteca Central", lat: 8.79150, lng: -75.86220, descripcion: "Centro de recursos académicos y salas de estudio.", imagen: "img/Biblioteca.jpg" },
+  { nombre: "Cafetería Auditorio", lat: 8.79130, lng: -75.86190, descripcion: "Zona de alimentación y descanso para estudiantes.", imagen: "img/Cafeteria Auditorio.jpg" },
   { nombre: "Bloque 11 Bioclimático", lat: 8.78968091273895, lng: -75.85936154749987, descripcion: "Edificio con diseño sostenible y ecológico.", imagen: "img/Bioclimatico.jpg" },
-  { nombre: "Edificio de Postgrado", lat: 8.788655450501842,  lng: -75.85802280524611, descripcion: "Oficinas y aulas para programas de postgrado.", imagen: "img/postgrado.jpg" },
-  { nombre: "Estadio de Fútbol", lat: 8.787799, lng: -75.859501, descripcion: "Estadio universitario para actividades deportivas.", imagen: "img/estadio.jpg" },
+  { nombre: "Edificio de Postgrado", lat: 8.788655450501842,  lng: -75.85802280524611, descripcion: "Oficinas y aulas para programas de postgrado.", imagen: "img/Postgrado.jpg" },
+  { nombre: "Estadio de Fútbol", lat: 8.787799, lng: -75.859501, descripcion: "Estadio universitario para actividades deportivas.", imagen: "img/Estadio.jpg" },
   { nombre: "Zona de Estudio Informática", lat: 8.788922, lng: -75.859029, descripcion: "Área de estudio y laboratorios para estudiantes de informática.", imagen: "img/zona informatica.jpg" },
   { nombre: "Piscina De La Universidad De Cordoba", lat: 8.789138235631484, lng: -75.85771734636926, descripcion: "Laboratorio para investigación molecular.", imagen: "img/piscina.jpg" },
   { nombre: "Bloque 4 - Salud", lat: 8.78934402578916, lng: -75.85792461571228, descripcion: "Bloque 4 - áreas de salud y docencia.", imagen: "img/bloque 4.jpg" },
