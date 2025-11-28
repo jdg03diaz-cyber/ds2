@@ -69,4 +69,5 @@ CMD php artisan config:cache && \
     php artisan view:cache && \
     php artisan migrate --force || true && \
     php artisan serve --host=0.0.0.0 --port=${PORT}
-}
+
+
