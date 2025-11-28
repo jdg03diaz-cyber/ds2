@@ -239,7 +239,7 @@ const bloques = [
     // ======= CERRAR SESIÓN =======
     document.getElementById("logout-btn").addEventListener("click", () => {
       if (confirm("¿Deseas cerrar sesión?")) {
-        window.location.href = "http://127.0.0.1:8000/";
+        window.location.href = "https://ds2-rcci.onrender.com/";
       }
     });
 
