@@ -1,73 +1,33 @@
+FROM php:8.2-apache
 
-FROM php:8.2-cli AS base
-
-
+# Extensiones necesarias para Laravel
 RUN apt-get update && apt-get install -y \
-    git \
-    unzip \
-    libpng-dev \
-    libonig-dev \
-    libxml2-dev \
-    zip \
-    curl \
+    libpng-dev libonig-dev libxml2-dev zip unzip git \
     && docker-php-ext-install pdo_mysql mbstring exif pcntl bcmath gd
 
+# Habilitar mod_rewrite (importante para rutas de Laravel)
+RUN a2enmod rewrite
+
+# Carpeta de trabajo
+WORKDIR /var/www/html
+
+# Copiar todo el proyecto al contenedor
+COPY . /var/www/html
+
+# Instalar Composer
 COPY --from=composer:2 /usr/bin/composer /usr/bin/composer
+RUN composer install --no-dev --optimize-autoloader
 
-WORKDIR /app
+# Permisos para storage y cache
+RUN chown -R www-data:www-data storage bootstrap/cache \
+    && chmod -R 775 storage bootstrap/cache
 
-FROM base AS vendor
+# Hacer que Apache apunte a /public
+RUN sed -i 's|/var/www/html|/var/www/html/public|g' /etc/apache2/sites-available/000-default.conf
 
-WORKDIR /app
-COPY composer.json composer.lock ./
+EXPOSE 80
 
-RUN composer install \
-    --no-dev \
-    --optimize-autoloader \
-    --no-interaction \
-    --no-progress
+CMD ["apache2-foreground"]
 
-
-FROM node:20 AS frontend
-
-WORKDIR /app
-
-
-COPY package*.json ./
-
-RUN npm install
-
-
-COPY resources ./resources
-COPY vite.config.* webpack.mix.js* . 2>/dev/null || true
-
-RUN npm run build
-
-FROM base AS final
-
-WORKDIR /app
-
-COPY . .
-
-
-COPY --from=vendor /app/vendor ./vendor
-
-COPY --from=frontend /app/public/build ./public/build
-
-
-ENV APP_ENV=production \
-    APP_DEBUG=false \
-    LOG_CHANNEL=stderr
-
-
-ENV PORT=10000
-
-EXPOSE 10000
-
-CMD php artisan config:cache && \
-    php artisan route:cache && \
-    php artisan view:cache && \
-    php artisan migrate --force || true && \
-    php artisan serve --host=0.0.0.0 --port=${PORT}
 
 
